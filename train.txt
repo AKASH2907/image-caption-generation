@@ -1,0 +1,183 @@
+Loaded: 8092 
+Vocabulary Size: 8763
+/home/rajivratn/debanjan/softwares/anaconda3/lib/python3.6/site-packages/h5py/__init__.py:33: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+Dataset: 6000
+Descriptions: train=6000
+Photos: train=6000
+Vocabulary Size: 7579
+Description Length: 34
+Dataset: 1000
+Descriptions: test=1000
+Photos: test=1000
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 34)           0                                            
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 4096)         0                                            
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 34, 256)      1940224     input_2[0][0]                    
+__________________________________________________________________________________________________
+dropout_1 (Dropout)             (None, 4096)         0           input_1[0][0]                    
+__________________________________________________________________________________________________
+dropout_2 (Dropout)             (None, 34, 256)      0           embedding_1[0][0]                
+__________________________________________________________________________________________________
+dense_1 (Dense)                 (None, 256)          1048832     dropout_1[0][0]                  
+__________________________________________________________________________________________________
+lstm_1 (LSTM)                   (None, 256)          525312      dropout_2[0][0]                  
+__________________________________________________________________________________________________
+add_1 (Add)                     (None, 256)          0           dense_1[0][0]                    
+                                                                 lstm_1[0][0]                     
+__________________________________________________________________________________________________
+dense_2 (Dense)                 (None, 256)          65792       add_1[0][0]                      
+__________________________________________________________________________________________________
+dense_3 (Dense)                 (None, 7579)         1947803     dense_2[0][0]                    
+==================================================================================================
+Total params: 5,527,963
+Trainable params: 5,527,963
+Non-trainable params: 0
+__________________________________________________________________________________________________
+None
+Traceback (most recent call last):
+  File "/home/rajivratn/debanjan/softwares/anaconda3/lib/python3.6/site-packages/keras/utils/vis_utils.py", line 27, in _check_pydot
+    pydot.Dot.create(pydot.Dot())
+AttributeError: 'NoneType' object has no attribute 'Dot'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "train.py", line 174, in <module>
+    model = define_model(vocab_size, max_length)
+  File "train.py", line 131, in define_model
+    plot_model(model, to_file='model.png', show_shapes=True)
+  File "/home/rajivratn/debanjan/softwares/anaconda3/lib/python3.6/site-packages/keras/utils/vis_utils.py", line 135, in plot_model
+    dot = model_to_dot(model, show_shapes, show_layer_names, rankdir)
+  File "/home/rajivratn/debanjan/softwares/anaconda3/lib/python3.6/site-packages/keras/utils/vis_utils.py", line 56, in model_to_dot
+    _check_pydot()
+  File "/home/rajivratn/debanjan/softwares/anaconda3/lib/python3.6/site-packages/keras/utils/vis_utils.py", line 31, in _check_pydot
+    raise ImportError('Failed to import pydot. You must install pydot'
+ImportError: Failed to import pydot. You must install pydot and graphviz for `pydotprint` to work.
+2018-08-02 06:41:26.806305: I tensorflow/core/platform/cpu_feature_guard.cc:140] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+Dataset: 6000
+Descriptions: train=6000
+Photos: train=6000
+Vocabulary Size: 7579
+Description Length: 34
+Dataset: 1000
+Descriptions: test=1000
+Photos: test=1000
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            (None, 34)           0                                            
+__________________________________________________________________________________________________
+input_1 (InputLayer)            (None, 4096)         0                                            
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 34, 256)      1940224     input_2[0][0]                    
+__________________________________________________________________________________________________
+dropout_1 (Dropout)             (None, 4096)         0           input_1[0][0]                    
+__________________________________________________________________________________________________
+dropout_2 (Dropout)             (None, 34, 256)      0           embedding_1[0][0]                
+__________________________________________________________________________________________________
+dense_1 (Dense)                 (None, 256)          1048832     dropout_1[0][0]                  
+__________________________________________________________________________________________________
+lstm_1 (LSTM)                   (None, 256)          525312      dropout_2[0][0]                  
+__________________________________________________________________________________________________
+add_1 (Add)                     (None, 256)          0           dense_1[0][0]                    
+                                                                 lstm_1[0][0]                     
+__________________________________________________________________________________________________
+dense_2 (Dense)                 (None, 256)          65792       add_1[0][0]                      
+__________________________________________________________________________________________________
+dense_3 (Dense)                 (None, 7579)         1947803     dense_2[0][0]                    
+==================================================================================================
+Total params: 5,527,963
+Trainable params: 5,527,963
+Non-trainable params: 0
+__________________________________________________________________________________________________
+None
+Train on 306404 samples, validate on 50903 samples
+Epoch 1/20
+
+Epoch 00001: val_loss improved from inf to 4.08123, saving model to model-ep001-loss4.525-val_loss4.081.h5
+ - 762s - loss: 4.5249 - val_loss: 4.0812
+Epoch 2/20
+
+Epoch 00002: val_loss improved from 4.08123 to 3.97044, saving model to model-ep002-loss3.903-val_loss3.970.h5
+ - 756s - loss: 3.9027 - val_loss: 3.9704
+Epoch 3/20
+
+Epoch 00003: val_loss improved from 3.97044 to 3.87226, saving model to model-ep003-loss3.720-val_loss3.872.h5
+ - 744s - loss: 3.7202 - val_loss: 3.8723
+Epoch 4/20
+
+Epoch 00004: val_loss improved from 3.87226 to 3.86797, saving model to model-ep004-loss3.626-val_loss3.868.h5
+ - 744s - loss: 3.6260 - val_loss: 3.8680
+Epoch 5/20
+
+Epoch 00005: val_loss did not improve
+ - 744s - loss: 3.5706 - val_loss: 3.8760
+Epoch 6/20
+
+Epoch 00006: val_loss did not improve
+ - 746s - loss: 3.5368 - val_loss: 3.8691
+Epoch 7/20
+
+Epoch 00007: val_loss did not improve
+ - 747s - loss: 3.5132 - val_loss: 3.8923
+Epoch 8/20
+
+Epoch 00008: val_loss did not improve
+ - 745s - loss: 3.5018 - val_loss: 3.9083
+Epoch 9/20
+
+Epoch 00009: val_loss did not improve
+ - 743s - loss: 3.4943 - val_loss: 3.8976
+Epoch 10/20
+
+Epoch 00010: val_loss did not improve
+ - 751s - loss: 3.4879 - val_loss: 3.9229
+Epoch 11/20
+
+Epoch 00011: val_loss did not improve
+ - 757s - loss: 3.4844 - val_loss: 3.9289
+Epoch 12/20
+
+Epoch 00012: val_loss did not improve
+ - 753s - loss: 3.4839 - val_loss: 3.9581
+Epoch 13/20
+
+Epoch 00013: val_loss did not improve
+ - 752s - loss: 3.4866 - val_loss: 3.9666
+Epoch 14/20
+
+Epoch 00014: val_loss did not improve
+ - 755s - loss: 3.4867 - val_loss: 3.9646
+Epoch 15/20
+
+Epoch 00015: val_loss did not improve
+ - 754s - loss: 3.4903 - val_loss: 3.9611
+Epoch 16/20
+
+Epoch 00016: val_loss did not improve
+ - 753s - loss: 3.4908 - val_loss: 3.9836
+Epoch 17/20
+
+Epoch 00017: val_loss did not improve
+ - 754s - loss: 3.4976 - val_loss: 3.9964
+Epoch 18/20
+
+Epoch 00018: val_loss did not improve
+ - 753s - loss: 3.4976 - val_loss: 4.0045
+Epoch 19/20
+
+Epoch 00019: val_loss did not improve
+ - 751s - loss: 3.5037 - val_loss: 4.0012
+Epoch 20/20
+
+Epoch 00020: val_loss did not improve
+ - 755s - loss: 3.5058 - val_loss: 3.9953
+/home/rajivratn/debanjan/softwares/anaconda3/lib/python3.6/site-packages/h5py/__init__.py:33: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
